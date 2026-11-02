@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Creatiu — Pràctica de selectors CSS</title>
+  <!-- Canvia a estils.css quan vulguis fer l'exercici o a estils_sol.css per veure la solució -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Capçalera principal (Selector 05: #inici, Selector 06: .capcalera) -->
+  <header class="capcalera" id="inici">
+    <!-- Selector 10: atribut de presència [target], Selector 11: :hover -->
+    <a class="marca" href="#inici" aria-label="Studio Creatiu, inici">
+      <span class="marca-icona">✳</span>
+      <span>studio<span class="marca-punt">.</span></span>
+    </a>
+
+    <!-- Selectors 07 i 08: navegació i fills directes nav > a -->
+    <nav class="navegacio" aria-label="Navegació principal">
+      <a href="#projectes">Projectes</a>
+      <a href="#manifest">Manifest</a>
+      <a href="#serveis">Serveis</a>
+      <a href="#contacte">Contacte</a>
+      <!-- Selector 41: [href^="https"] -->
+      <a class="enllac-extern xarxa-principal" href="https://example.com" target="_blank" rel="noopener">Inspiració</a>
+    </nav>
+
+    <!-- Selector 12: ::before en .disponibilitat -->
+    <span class="disponibilitat">Disponibles per a projectes</span>
+  </header>
+
+  <main>
+    <!-- Secció Hero -->
+    <section class="hero">
+      <div class="hero-contingut">
+        <!-- Selector 14: ::before en .sobre-titol -->
+        <p class="sobre-titol">ESTUDI INDEPENDENT · BARCELONA</p>
+        
+        <!-- Selector 13: #titol-principal span -->
+        <h1 id="titol-principal">Idees amb<br><span>caràcter.</span></h1>
+        
+        <p class="hero-text">Construïm identitats visuals i experiències digitals per a marques que volen deixar empremta.</p>
+        
+        <a class="boto boto-fosc" href="#projectes">Explora els projectes <span aria-hidden="true">↘</span></a>
+        <p class="nota-hero">Estratègia, disseny i una mica d'atreviment.</p>
+      </div>
+
+      <!-- Il·lustració visual de l'Hero (Selector 15: .forma-gran::after) -->
+      <div class="hero-visual" aria-label="Composició gràfica decorativa">
+        <div class="forma forma-gran"></div>
+        <div class="forma forma-petita"></div>
+        <div class="forma forma-anell"></div>
+        <span class="hero-lateral">DISSENY QUE CONNECTA</span>
+      </div>
+    </section>
+
+    <!-- Franja de dades (Selector 16: .franja-dades strong) -->
+    <section class="franja-dades" aria-label="Dades de l'estudi">
+      <div><strong>08</strong><span>anys creant</span></div>
+      <div><strong>42</strong><span>projectes lliurats</span></div>
+      <div><strong>12</strong><span>marques felices</span></div>
+      <div><strong>100%</strong><span>compromís</span></div>
+    </section>
+
+    <!-- Secció de projectes (Selector 53: :target) -->
+    <section class="seccio projectes" id="projectes">
+      <!-- Selector 17: .capcalera-seccio > div, Selector 18: :is() -->
+      <div class="capcalera-seccio">
+        <div>
+          <p class="sobre-titol">01 / SELECCIÓ</p>
+          <h2>Feina feta <span>amb intenció.</span></h2>
+        </div>
+        <p class="intro-seccio">Una selecció de projectes on cada detall té alguna cosa a dir.</p>
+      </div>
+
+      <!-- Graella de projectes (Selectors 19, 20, 21, 42, 43, 44, 52) -->
+      <div class="graella-projectes">
+        <!-- Projecte 1: data-tipus="branding" (Selector 19), sense data-estat (Selector 43) -->
+        <article class="targeta projecte" data-tipus="branding">
+          <a class="imatge-projecte imatge-coral" href="#contacte" aria-label="Veure projecte Brisa">
+            <span class="segell">BRISA®</span>
+            <span class="mini-etiqueta">Identitat visual</span>
+          </a>
+          <div class="info-projecte">
+            <h3>Brisa Natural</h3>
+            <span class="fletxa-projecte">↗</span>
+          </div>
+          <!-- Selector 20: .info-projecte + .descripcio-projecte -->
+          <p class="descripcio-projecte">Una marca de begudes botàniques amb esperit mediterrani.</p>
+        </article>
+
+        <!-- Projecte 2: :nth-child(2) (Selector 21), data-estat="destacat" (Selector 42: :has) -->
+        <article class="targeta projecte" data-tipus="digital" data-estat="destacat">
+          <a class="imatge-projecte imatge-blava" href="#contacte" aria-label="Veure projecte Nord">
+            <span class="nord-simbol">N</span>
+            <span class="mini-etiqueta">Disseny digital</span>
+          </a>
+          <div class="info-projecte">
+            <h3>Nord Objects</h3>
+            <span class="fletxa-projecte">↗</span>
+          </div>
+          <p class="descripcio-projecte">Un espai digital tan funcional com els objectes que presenta.</p>
+        </article>
+
+        <!-- Projecte 3: editorial -->
+        <article class="targeta projecte" data-tipus="editorial">
+          <a class="imatge-projecte imatge-groc" href="#contacte" aria-label="Veure projecte Mínim">
+            <span class="minim-marca">mínim.</span>
+            <span class="mini-etiqueta">Editorial</span>
+          </a>
+          <div class="info-projecte">
+            <h3>Mínim Magazine</h3>
+            <span class="fletxa-projecte">↗</span>
+          </div>
+          <p class="descripcio-projecte">Una revista independent sobre viure amb menys soroll.</p>
+        </article>
+
+        <!-- Projecte 4: branding -->
+        <article class="targeta projecte" data-tipus="branding" data-estat="en-proces">
+          <a class="imatge-projecte imatge-lila" href="#contacte" aria-label="Veure projecte Flora">
+            <span class="flora-asterisc">✳</span>
+            <span class="mini-etiqueta">Identitat visual</span>
+          </a>
+          <div class="info-projecte">
+            <h3>Flora Studio</h3>
+            <span class="fletxa-projecte">↗</span>
+          </div>
+          <p class="descripcio-projecte">Un llenguatge visual orgànic per a una floristeria contemporània.</p>
+        </article>
+      </div>
+
+      <!-- Selector 23: .missatge-buit:empty -->
+      <p class="missatge-buit" aria-live="polite"></p>
+    </section>
+
+    <!-- Secció Manifest -->
+    <section class="manifest" id="manifest">
+      <!-- Selector 24: .manifest-grafic::before -->
+      <div class="manifest-grafic">
+        <span class="manifest-asterisc">✳</span>
+        <span class="manifest-numero">02</span>
+      </div>
+
+      <div class="manifest-contingut">
+        <p class="sobre-titol">02 / COM PENSEM</p>
+        <h2>El bon disseny<br>no crida. <span>Connecta.</span></h2>
+        
+        <!-- Selector 49: .manifest-intro::first-letter -->
+        <p class="manifest-intro">Creiem en les idees clares, les decisions valentes i els detalls que tenen sentit.</p>
+        
+        <!-- Selectors 22 i 25: :first-child i :last-child en .llista-valors > li -->
+        <ul class="llista-valors">
+          <li><span>01</span><div><strong>Intenció abans que decoració</strong><p>Cada decisió visual resol una necessitat real.</p></div></li>
+          <li><span>02</span><div><strong>Personalitat sense soroll</strong><p>Ser diferents no vol dir complicar-ho tot.</p></div></li>
+          <li><span>03</span><div><strong>Col·laboració de veritat</strong><p>Les millors idees creixen quan es comparteixen.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Secció Serveis -->
+    <section class="seccio serveis" id="serveis">
+      <div class="capcalera-seccio">
+        <div>
+          <p class="sobre-titol">03 / QUÈ FEM</p>
+          <h2>Del primer esbós<br>al <span>detall final.</span></h2>
+        </div>
+        <p class="intro-seccio">Un procés flexible, una mirada global i molta cura en l'execució.</p>
+      </div>
+
+      <!-- Selectors 26, 27, 45, 51: .servei, :hover, :nth-of-type(3), :first-of-type, :nth-child(odd) -->
+      <div class="serveis-llista">
+        <article class="servei">
+          <span class="servei-numero">01</span>
+          <h3>Estratègia de marca</h3>
+          <p>Posicionament, veu i direcció creativa.</p>
+          <span class="servei-icon">↗</span>
+        </article>
+        <article class="servei">
+          <span class="servei-numero">02</span>
+          <h3>Identitat visual</h3>
+          <p>Logotip, sistema gràfic i univers visual.</p>
+          <span class="servei-icon">↗</span>
+        </article>
+        <article class="servei">
+          <span class="servei-numero">03</span>
+          <h3>Disseny digital</h3>
+          <p>Webs accessibles, útils i memorables.</p>
+          <span class="servei-icon">↗</span>
+        </article>
+        <article class="servei">
+          <span class="servei-numero">04</span>
+          <h3>Direcció d'art</h3>
+          <p>Imatges, campanyes i contingut amb coherència.</p>
+          <span class="servei-icon">↗</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- Secció Contacte i Formulari -->
+    <section class="contacte" id="contacte">
+      <div class="contacte-intro">
+        <p class="sobre-titol">04 / PARLEM-NE</p>
+        <h2>Tens una idea?<br><span>Fem-la passar.</span></h2>
+        <p>Explica'ns què tens al cap. Ens agrada començar amb una bona conversa.</p>
+        <!-- Selector 28: a[href$=".cat"] -->
+        <a class="correu" href="mailto:hola@studiocreatiu.cat">hola@studiocreatiu.cat ↗</a>
+      </div>
+
+      <!-- Formulari (Selectors 29-37, 47, 48: :focus, :focus-visible, ::placeholder, :required, :optional, :valid, :invalid, :placeholder-shown, [type="checkbox"], :checked, :disabled, :enabled) -->
+      <form class="formulari" action="#" method="get">
+        <div class="camp">
+          <label for="nom">Nom complet *</label>
+          <input id="nom" name="nom" type="text" placeholder="Com et dius?" required>
+        </div>
+
+        <div class="camp">
+          <label for="email">Correu electrònic *</label>
+          <input id="email" name="email" type="email" placeholder="tu@empresa.cat" required>
+        </div>
+
+        <div class="camp">
+          <label for="tipus">Què necessites? (opcional)</label>
+          <select id="tipus" name="tipus">
+            <option value="">Tria una opció</option>
+            <option value="branding">Identitat de marca</option>
+            <option value="web">Disseny web</option>
+            <option value="editorial">Disseny editorial</option>
+          </select>
+        </div>
+
+        <div class="camp">
+          <label for="missatge">Explica'ns el projecte</label>
+          <textarea id="missatge" name="missatge" rows="4" placeholder="Una mica de context ens ajudarà..."></textarea>
+        </div>
+
+        <!-- Selector 47: .camp-check:has(input:checked) -->
+        <div class="camp camp-check">
+          <!-- Selectors 35 i 36: input[type="checkbox"] i input:checked + label -->
+          <input id="privacitat" name="privacitat" type="checkbox" required>
+          <label for="privacitat">Accepto la política de privacitat.</label>
+        </div>
+
+        <!-- Selectors 37 i 48: button:enabled i button:disabled -->
+        <button class="boto boto-coral" type="submit">Enviar missatge <span aria-hidden="true">↗</span></button>
+        <button class="boto boto-desactivat" type="button" disabled>Enviament desactivat</button>
+
+        <p class="nota-formulari">Els camps amb * són obligatoris.</p>
+      </form>
+    </section>
+  </main>
+
+  <!-- Peu de pàgina (Selectors 38, 39, 40, 41, 46: .xarxes a:not(), :where(), :visited, a[href^="https"], a:nth-last-child) -->
+  <footer class="peu">
+    <a class="marca" href="#inici">
+      <span class="marca-icona">✳</span>
+      <span>studio<span class="marca-punt">.</span></span>
+    </a>
+    
+    <h3>Studio Creatiu</h3>
+    <p>Idees clares. Disseny honest.</p>
+
+    <div class="xarxes">
+      <a class="xarxa-principal" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://behance.net" target="_blank" rel="noopener">Behance</a>
+      <a href="mailto:hola@studiocreatiu.cat">Correu</a>
+    </div>
+
+    <small>© 2026 Studio Creatiu · Fet amb intenció.</small>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,588 @@
+/* ==========================================================================
+   PRÀCTICA: LABORATORI DE SELECTORS CSS (TEMA ROTUND)
+   --------------------------------------------------------------------------
+   Instruccions:
+   - Completa el selector que falta a cada regla CSS.
+   - No modifiquis les declaracions dins de les claus {}.
+   - Consulta el comentari superior per identificar quin objectiu té cada regla.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   VARIABLES I SISTEMA DE DISSENY (No modificar)
+   -------------------------------------------------------------------------- */
+:root {
+  --bg-main: #0d0e0d;
+  --bg-card: #ffffff;
+  --bg-accent: #ccff00;
+  --text-dark: #000000;
+  --text-light: #f5f5f0;
+  --text-muted: #888880;
+  --accent-blue: #1030eb;
+  --accent-green: #00e676;
+  --border-stiff: #222220;
+  --border-sharp: #000000;
+  --font-serif: "Syne", "Playfair Display", sans-serif;
+  --font-sans: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --transition-fast: all 0.15s cubic-bezier(0.2, 0, 0, 1);
+  --shadow-block: 6px 6px 0px #000000;
+}
+
+/* 01. Selector Universal: Aplica box-sizing i renderitzat de text nítid a TOTS els elements. */
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 02. Selector d'Etiqueta: Elimina el marge per defecte de l'element arrel <html> i activa el desplaçament suau. */
+html{
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+/* 03. Selector d'Etiqueta: Defineix el fons fosc general, color de text i font principal a l'element <body>. */
+body{
+  background-color: var(--bg-main);
+  color: var(--text-light);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* 04. Selector de Grup: Aplica la font tipogràfica de titulars i majúscules als títols h1, h2 i h3. */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+}
+
+/* 05. Selector d'ID: Centra horitzontalment i limita l'amplada màxima de la capçalera amb id "inici". */
+#inici{
+  max-width: 1400px;
+  margin-inline: auto;
+}
+/* 06. Selector de Classe: Configura els elements amb classe .capcalera com a barra fixa superior. */
+.capcalera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid var(--border-stiff);
+  background-color: var(--bg-main);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* 07. Enllaços (etiqueta <a>) continguts dins de la classe .navegacio. */
+.navegacio a{
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: var(--transition-fast);
+}
+
+/* 08. Únicament els enllaços <a> que siguin fills directes de l'etiqueta <nav>. */
+nav > a{
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+}
+
+/* 09. Destaca el punt decoratiu amb classe .marca-punt amb el color neó. */
+.marca-punt{
+  color: var(--bg-accent);
+}
+
+/* 10. Enllaços <a> que tinguin definit l'atribut "target". */
+a[target]{
+  cursor: crosshair;
+}
+
+/* 11. Pseudoclasse d'Interacció (:hover): Canvia fons a neó i text a fosc en passar el cursor per sobre de qualsevol <a>. */
+a:hover{
+  color: var(--text-dark);
+  background-color: var(--bg-accent);
+}
+
+/* 12. Pseudoelement ::before: Dibuixa un punt de llum verd abans del text en la classe .disponibilitat. */
+.disponibilitat::before{
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  background-color: var(--accent-green);
+  box-shadow: 0 0 10px var(--accent-green);
+}
+
+/* 13. Element <span> contingut dins de l'element amb id "titol-principal". */
+#titol-principal span{
+  color: var(--bg-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+}
+
+/* 14. Pseudoelement ::before: Genera un quadrat groc neó abans dels elements amb la classe .sobre-titol. */
+.sobre-titol::before{
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 8px;
+  background-color: var(--bg-accent);
+}
+
+/* 15. Pseudoelement ::after: Superposa un símbol d'asterisc al centre de la classe .forma-gran. */
+.forma-gran::after{
+  content: "✳";
+  position: absolute;
+  color: var(--text-dark);
+  font-size: 5rem;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+/* 16. Elements de text emfatitzat <strong> situats dins de la classe .franja-dades. */
+.franja-dades strong{
+  display: block;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: var(--font-serif);
+  color: var(--text-dark);
+  line-height: 0.9;
+}
+
+/* 17. Bloc <div> fill directe de la capçalera de secció .capcalera-seccio. */
+.capcalera-seccio > div{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  border-bottom: 2px solid var(--border-stiff);
+  padding-bottom: 1.5rem;
+}
+
+/* 18. Pseudoclasse Lògica :is(): Pinta de groc neó els <span> dels títols <h2> dins de .capcalera-seccio i .manifest-contingut. */
+:is(.capcalera-seccio,.manifest-contingut) h2 span{
+  color: var(--bg-accent);
+}
+
+/* 19. Targetes de la classe .projecte que tinguin l'atribut data-tipus="branding" en :hover. */
+.projecte[data-tipus]:hover{
+  outline: 4px solid var(--bg-accent);
+  outline-offset: 4px;
+}
+
+/* 20. Paràgraf .descripcio-projecte situat immediatament després de .info-projecte. */
+.info-projecte + .descripcio-projecte{
+  margin-top: 0.75rem;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* 21. Pseudoclasse de Posició :nth-child(n): Aplica el color neó a la classe .nord-simbol del segon projecte. */
+.nord-simbol:nth-child(2){
+  color: var(--bg-accent);
+  transition: var(--transition-fast);
+}
+
+/* 22. Primer element <li> fill directe de la llista amb la classe .llista-valors. */
+.llista-valors > li:first-child{
+  border-top: 3px solid var(--bg-accent);
+}
+
+/* 23. Pseudoclasse de Contingut :empty: Amaga l'element de la classe .missatge-buit quan no té contingut. */
+.missatge-buit:empty{
+  display: none;
+}
+
+/* 24. Pseudoelement ::before: Dibuixa un marc quadrat al voltant del contingut de la classe .manifest-grafic. */
+.manifest-grafic::before{
+  content: "";
+  position: absolute;
+  width: 290px;
+  height: 290px;
+  border: 2px solid var(--bg-accent);
+}
+
+/* 25. Últim element <li> fill directe de la llista amb la classe .llista-valors. */
+.llista-valors > li:last-child{
+  border-bottom: 1px solid var(--border-stiff);
+  padding-bottom: 1.5rem;
+}
+
+/* 26. Destaca amb fons neó i text fosc qualsevol element de la classe .servei. quan es passi el ratolí per sobre*/
+.servei:hover{
+  padding-left: 1.5rem;
+  background-color: var(--bg-accent);
+  color: var(--text-dark);
+}
+
+/* 27. Pseudoclasse estructural :nth-of-type(): Canvia a blau elèctric el .servei-numero del tercer article de servei. */
+article.servei:nth-of-type(3) .servei-numero {
+  color: var(--accent-blue);
+  font-weight: 900;
+}
+
+/* 28. Enllaços <a> amb un atribut href que acaba en la cadena ".cat". */
+a[href$=".cat"]{
+  font-weight: 800;
+  background-color: var(--bg-accent);
+  color: var(--text-dark);
+  padding: 0.2rem 0.5rem;
+}
+
+/* 29. Pseudoclasse de Formulari/Focus (:focus): Aplica l'ombra blava quan els camps dins de .formulari tenen el focus. */
+.formulari input:focus,
+.formulari textarea:focus,
+.formulari select:focus
+{
+  outline: none;
+  border-color: var(--text-dark);
+  box-shadow: 4px 4px 0px var(--accent-blue);
+}
+
+/* 30. Pseudoclasse d'Interacció :focus-visible: Aplica un contorn neó d'accessibilitat en navegar per <a> i <button>. */
+a:focus-visible,
+button:focus-visible
+{
+  outline: 3px solid var(--bg-accent);
+  outline-offset: 3px;
+}
+
+/* 31. Estila el text d'ajuda (placeholder) dels camps <input> i <textarea>. */
+input::placeholder,
+textarea::placeholder{
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* 32. Aplica vora esquerra als camps obligatoris i discontínua als opcionals de .formulari. */
+.formulari :required{
+  border-left: 4px solid var(--text-dark);
+}
+.formulari :optional{
+  border-style: dashed;
+}
+
+/* 33. Pseudoclasses de Validació (:valid / :invalid): Vora verda per a camps vàlids i vermella per a <input> invàlids. */
+input:valid{
+  border-color: var(--accent-green);
+}
+input :invalid{
+  border-color: #ff0055;
+}
+
+/* 34. Pseudoclasse de Formulari :placeholder-shown: Manten el fons blanc als <input> mentre no tenen text entrat. */
+input:placeholder-shown{
+  background-color: #ffffff;
+}
+
+/* 35. Aplica fons i mida als camps <input> de tipus type="checkbox". */
+input[type="checkbox"]{
+  width: 20px;
+  height: 20px;
+  accent-color: var(--text-dark);
+  cursor: pointer;
+}
+
+/* 36. Pinta l'etiqueta <label> adjacenta a un checkbox marcat. */
+input[type="checkbox"] + label{
+  font-weight: 800;
+  background-color: var(--bg-accent);
+  color: var(--text-dark);
+}
+
+/* 37. Redueix opacitat en <button> desactivats i activa cursor en habilitats. */
+button:disabled{
+  opacity: 0.2;
+  cursor: not-allowed;
+  border-color: var(--text-muted);
+}
+button:enabled{
+  cursor: pointer;
+}
+
+/* 38. Pseudoclasse Lògica :not(): Redueix l'opacitat dels enllaços <a> de .xarxes excepte del que té la classe .xarxa-principal. */
+.xarxes a:not(.xarxa-principal){
+  opacity: 0.4;
+}
+
+/* 39. Pseudoclasse Lògica :where(): Anul·la els marges verticals dels títols <h2> i <h3> dins de la classe .peu. */
+.peu :where(h2,h3){
+  margin: 0;
+}
+
+/* 40. Pseudoclasse d'Estat d'Enllaç :visited: Defineix el color per als enllaços <a> del .peu ja visitats. */
+.peu a:visited{
+  color: var(--text-muted);
+}
+
+/* 41. Afegeix fletxa neó als enllaços <a> amb href començat per "https". */
+a[href^="https"]::after{
+  content: " ↗";
+  font-weight: 900;
+  color: var(--bg-accent);
+}
+
+/* 42. Pseudoclasse de Contenidor :has(): Aplica ombra de bloc a la classe .projecte que conté l'atribut data-estat="destacat". */
+.projecte:has[data-estat="destacat"]{
+  border: 2px solid var(--text-dark);
+  box-shadow: var(--shadow-block);
+}
+
+/* 43. Pseudoclasse Lògica :not() amb Atribut: Afegeix l'etiqueta "RAW" als .projecte que NO tenen l'atribut data-estat. */
+.projecte:not([data-estat])::before{
+  content: "RAW";
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 2px 6px;
+  background-color: var(--text-dark);
+  color: #ffffff;
+}
+
+/* 44. Ocupa tota l'amplada si un element és fill únic de .graella-projectes. */
+.graella-projectes > :only-child{
+  grid-column: 1 / -1;
+}
+
+/* 45. Augmenta la mida del primer <h3> que apareix dins de cada .servei. */
+.servei h3:first-of-type{
+  font-size: 1.5rem;
+}
+
+/* 46. Aplica fons blau al penúltim enllaç <a> contingut dins de .navegacio. */
+.navegacio a:nth-last-of-type(2){
+  background-color: var(--accent-blue);
+  color: #ffffff;
+}
+
+/* 47. Pseudoclasse :has() amb estat de formulari: Destaca el contenidor .camp-check quan té un checkbox marcat (:checked). */
+.camp-check:has(:checked){
+  background-color: var(--bg-accent);
+  padding: 0.5rem;
+  border: 2px solid var(--text-dark);
+}
+
+/* 48. Combinació de :not() i :disabled per a :hover: Aplica efecte de prémer als <button> en :hover que no estiguin desactivats. */
+button:hover:not(:disabled){
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0px var(--bg-accent);
+}
+
+/* 49. Pseudoelement ::first-letter: Genera una lletra capitular gegant a la classe .manifest-intro. */
+.manifest-intro::first-letter{
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  float: left;
+  line-height: 0.7;
+  margin-right: 0.5rem;
+  color: var(--bg-accent);
+}
+
+/* 50. Pseudoelement ::selection: Personalitza el color de fons i text quan l'usuari selecciona text a la pàgina. */
+::selection{
+  background-color: var(--bg-accent);
+  color: var(--text-dark);
+}
+
+/* 51. Aplica un fons fosc alternatiu a les files de .servei senars. */
+.servei:nth-child(odd){
+  background-color: #141514;
+}
+
+/* 52. Canvia el cursor als elements amb una classe que inclogui el mot "projecte". */
+[class*="projecte"]{
+  cursor: crosshair;
+}
+
+/* 53. Pseudoclasse de Navegació :target: Activa l'animació de parpelleig neó quan una secció esdevé l'ancoratge URL actiu. */
+:target{
+  animation: flashNeat 1s steps(2, start);
+}
+
+@keyframes flashNeat {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: var(--bg-accent); color: var(--text-dark); }
+}
+
+
+/* ==========================================================================
+   ESTILS DE NIVELLAMENT VISUAL COMPLEMENTARIS (No modificar)
+   ========================================================================== */
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  padding: 6rem 2rem;
+  max-width: 1400px;
+  margin-inline: auto;
+}
+.hero-visual {
+  height: 420px;
+  background-color: var(--bg-accent);
+  border: 2px solid var(--text-dark);
+  box-shadow: var(--shadow-block);
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.forma-gran {
+  width: 240px;
+  height: 240px;
+  background-color: #ffffff;
+  border: 2px solid var(--text-dark);
+  position: relative;
+}
+.franja-dades {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 3rem 2rem;
+  background-color: var(--bg-accent);
+  color: var(--text-dark);
+  border-top: 2px solid var(--text-dark);
+  border-bottom: 2px solid var(--text-dark);
+}
+.seccio {
+  padding: 8rem 2rem;
+  max-width: 1400px;
+  margin-inline: auto;
+}
+.graella-projectes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+.projecte {
+  background-color: var(--bg-card);
+  color: var(--text-dark);
+  padding: 1.5rem;
+  border: 2px solid var(--text-dark);
+}
+.imatge-projecte {
+  height: 240px;
+  border: 2px solid var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+.imatge-coral { background-color: #ff5533; color: #ffffff; }
+.imatge-blava { background-color: var(--accent-blue); color: #ffffff; }
+.imatge-groc { background-color: var(--bg-accent); }
+.imatge-lila { background-color: #d1c4e9; }
+
+.info-projecte {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.25rem;
+}
+.manifest {
+  background-color: #141514;
+  border-top: 2px solid var(--border-stiff);
+  border-bottom: 2px solid var(--border-stiff);
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 4rem;
+  padding: 8rem 2rem;
+  align-items: center;
+}
+.manifest-grafic {
+  height: 400px;
+  border: 2px solid var(--border-stiff);
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.llista-valors {
+  list-style: none;
+  padding: 0;
+  margin-top: 3rem;
+}
+.llista-valors li {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border-stiff);
+}
+.servei {
+  display: grid;
+  grid-template-columns: 80px 1fr 1.5fr auto;
+  align-items: center;
+  padding: 2rem 1rem;
+  border-bottom: 1px solid var(--border-stiff);
+  transition: var(--transition-fast);
+}
+.contacte {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  padding: 8rem 2rem;
+  max-width: 1400px;
+  margin-inline: auto;
+}
+.formulari {
+  background-color: var(--bg-card);
+  color: var(--text-dark);
+  padding: 3rem;
+  border: 2px solid var(--text-dark);
+  box-shadow: 10px 10px 0px var(--bg-accent);
+}
+.camp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.camp input, .camp select, .camp textarea {
+  padding: 0.85rem 1rem;
+  border: 2px solid var(--text-dark);
+  font-family: inherit;
+  font-weight: 600;
+}
+.boto {
+  padding: 1.2rem 2rem;
+  border: 2px solid var(--text-dark);
+  font-weight: 800;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+.boto-fosc {
+  background-color: var(--bg-accent);
+  color: var(--text-dark);
+  box-shadow: 4px 4px 0px #ffffff;
+}
+.boto-coral {
+  background-color: var(--text-dark);
+  color: var(--bg-accent);
+  width: 100%;
+}
+.peu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 2rem;
+  border-top: 2px solid var(--border-stiff);
+  max-width: 1400px;
+  margin-inline: auto;
+}
+.xarxes {
+  display: flex;
+  gap: 1.5rem;
+}
