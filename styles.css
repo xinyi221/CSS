@@ -332,7 +332,7 @@ a[href^="https"]::after{
 }
 
 /* 42. Pseudoclasse de Contenidor :has(): Aplica ombra de bloc a la classe .projecte que conté l'atribut data-estat="destacat". */
-.projecte:has[data-estat="destacat"]{
+.projecte:has([data-estat="destacat"]){
   border: 2px solid var(--text-dark);
   box-shadow: var(--shadow-block);
 }
